@@ -17,36 +17,16 @@ jobs:
           cache: 'maven'
       - name: Build with Maven
         run: mvn -B package --file pom.xml -Dmaven.test.skip=true
-      - name: publish-artifact-to-git
-        # You may pin to the exact commit or the version.
-        # uses: SpinyOwl/publish-artifact-to-git@7457bf8ac9065cc368a00f9946bffd5f468a851a
-        uses: SpinyOwl/publish-artifact-to-git@1.0.0
-        with:
-        # Destination repository (default: current repository)
-        repository: # optional, default is 
-        # Destination branch
-        branch: 
-        # Destination git host
-        host: # optional, default is github.com
-        # GitHub Token (use `secrets.GITHUB_TOKEN`)
-        github_token: 
-        # Personal Access Token or other https credentials
-        github_pat: # optional, default is 
-        # Source folder in workspace to copy (default: workspace root)
-        source_folder: # optional, default is 
-        # Target folder in destination branch to copy to (default: repository root)
-        target_folder: # optional, default is 
-        # User Name <email@address> (default: [github.actor]@users.noreply.github.com)
-        commit_author: # optional, default is 
-        # Commit message (default: [workflow] Publish from [repository]:[branch]/[folder])
-        commit_message: # optional, default is 
-        # Do not push to repository (set to non-empty string to make dry-run)
-        dry_run: # optional, default is 
-        # Working directory for clone (default: random location in `${HOME}`)
-        working_directory: # optional, default is 
-        # Source folder in workspace to copy if branch didnt exist (default: source_folder value)
-        initial_source_folder: # optional, default is 
-        # Commit message if branch didnt exist
-        initial_commit_message: # optional, default is Initial commit
-        # Do not delete files from the destination repository if they are not exist in source folder (set to non-empty string to skip file removing)
-        no_delete: # optional, default is 
+      - name : create a temporary artifact  folder
+        run: mkdir Artifacts
+      
+      - name : Add artifacts to publish to the temp folder Artifacts folder
+        run: |
+          cd Artifacts
+          echo 'Readme' > readme.html
+          cd ..
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.4
+        with :
+          name: ArtifactsFolder
+          path : target
