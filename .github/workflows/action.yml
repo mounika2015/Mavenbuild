@@ -32,18 +32,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ramandevopsnew_java-maven-app
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml 
-      - name : create a temporary artifact  folder
-        run: mkdir Artifacts
-      
-      - name : Add artifacts to publish to the temp folder Artifacts folder
-        run: |
-          cd Artifacts
-          echo 'Readme' > readme.html
-          cd ..
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.4
         with :
-          name: ArtifactsFolder
-          path : target
+          name: Artifacts
+          path : target/*.jar
