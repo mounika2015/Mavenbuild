@@ -38,3 +38,13 @@ jobs:
         with :
           name: Artifacts
           path : target/*.jar
+       ######## JUnit Test with Maven ########
+      - name: Test with Maven
+        run: mvn -B test --file pom.xml
+        
+      - name: Upload JaCoCo coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/ 
+        
