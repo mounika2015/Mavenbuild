@@ -116,8 +116,6 @@ jobs:
                     echo "Actual ${metric%.*} - ${value%.*}"
                     echo "Sonar code coverage Gate: Passed"
                   fi
-            else
-              echo "No Sonar Gates Found"
             fi
           done <<< $(jq -c '.component.measures[]' $PWD/Response.json)
           cat $PWD/Response.json
