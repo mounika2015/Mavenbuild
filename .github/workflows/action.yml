@@ -125,3 +125,8 @@ jobs:
             fi
           done <<< $(jq -c '.component.measures[]' $PWD/Response.json)
           cat $PWD/Response.json
+          
+       ######Docker Image ######   
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile 
