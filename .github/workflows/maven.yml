@@ -4,7 +4,7 @@ env:
   CODE_SMELLS_THRESHOLD: 200
   VULNERABILITIES_THRESHOLD: 6
   
-name: Github Actions Maven Build
+name: Github Actions Maven Build 
 on:
   push:
     branches: [ main ]
