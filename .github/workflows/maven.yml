@@ -1,7 +1,7 @@
 #### Environment Variables ####
 env:
   COVERAGE_THRESHOLD: 20
-  CODE_SMELLS_THRESHOLD: 200
+  CODE_SMELLS_THRESHOLD: 200 
   VULNERABILITIES_THRESHOLD: 6
   
 name: Github Actions Maven Build 
